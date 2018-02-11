@@ -1,8 +1,9 @@
 // age must be a string in order to compare what is in the database '55 Years'
+//gender: Male/Female must be capitalized
 let complete =
 	{
 		"age": "65",
-		"sex": "female",
+		"gender": "Female",
 		"geneticTesting": "apoE4_1",
 		"mri": "yes",
 		"pet": "amyloidBeta_1",
@@ -19,7 +20,7 @@ let complete =
 let basic = 
 	{
 		"age": "70",
-		"sex": "male",
+		"gender": "Male",
 		"geneticTesting": "no",
 		"mri": "no",
 		"pet": "no",

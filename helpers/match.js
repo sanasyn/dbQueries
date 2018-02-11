@@ -26,13 +26,16 @@ function runQuery() {
 		this
 		.where('minimum_age', '<=' , basicQuery.age)
 		.andWhere('maximum_age', '>=' , basicQuery.age)
+		.orWhere({
+			'minimum_age': 'N/A',
+			'maximum_age': 'N/A'
+		})
 	})
-	.orWhere(function() {
+	.andWhere(function() {
 		this
-		.where('minimum_age', 'N/A')
-		.andWhere('maximum_age', 'N/A')
-	})
-	// .andWhere('gender', basicQuery.sex)
+		.where('gender', basicQuery.gender)
+		.orWhere('gender', 'All')
+	})	
 	.then(function(rows) {
 		console.log(rows);
 	})
@@ -41,4 +44,16 @@ function runQuery() {
 	});
 }
 
-runQuery();
+function testQuery() {
+	return knex.select()
+	.from('eligibilities')
+	.where('id','<=','1711380')
+	.then(function(rows) {
+		console.log(rows);
+	})
+	.catch(function(error){
+		console.log(error)
+	});
+}
+// runQuery();
+testQuery();
