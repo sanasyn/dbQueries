@@ -21,12 +21,15 @@ const transformAactMaster = (res) => {
 };
 
 function criteriaInc(criteria) {
-  let inclusion = criteria.substring(0, (criteria.indexOf(criteria.match('Exclusion'))) || criteria.indexOf(criteria.match('EXCLUSION')))
-  return inclusion
+  // let inclusion = criteria.substring(0, (criteria.indexOf(criteria.match('Exclusion'))) || criteria.indexOf(criteria.match('EXCLUSION')))
+  // let inclusion = criteria.substring(criteria.indexOf(criteria.match('Inclusion')), criteria.indexOf(criteria.match('Exclusion')))
+  return criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion')) !== '' ? 
+    criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion')) :
+    criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf('EXCLUSION'))
 }
 
 function criteriaEx(criteria) {
-  let exclusion = criteria.substring(criteria.indexOf(criteria.match('Exclusion')) || criteria.indexOf(criteria.match('Exclusion')))
+  let exclusion = criteria.substring(criteria.indexOf(criteria.match('Exclusion')) || criteria.indexOf(criteria.match('EXCLUSION')))
   return exclusion
 }
 
