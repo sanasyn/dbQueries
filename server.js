@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+require('./etl/aactMaster.js');
 require("./helpers/match.js");
 
 app.listen(PORT, function() {
