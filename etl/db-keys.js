@@ -10,7 +10,7 @@ module.exports = {
     user: 'whitneywong',
     host: 'localhost',
     database: 'testdb',
-    password: 'SnowFun1',
+    password: 'test',
     port: 5432,
     searchPath: 'public'
   }
