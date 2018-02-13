@@ -6,8 +6,8 @@ const loadAactMaster = require('./load/load-aact-master');
 
 const connect_local = require('./db-keys').local;
 const connect_aact =  require('./db-keys').aact;
-const db_aact = require('knex')({client: 'pg', connection: connect_aact})
-const db_local = require('knex')({client: 'pg', connection: connect_local})
+const db_aact = process.env.CONNECT_AACT || require('knex')({client: 'pg', connection: connect_aact})
+const db_local = process.env.DATABASE_URL || require('knex')({client: 'pg', connection: connect_local})
 
 const aactMasterETL = () => {
   return new Promise((resolve, reject) => {
