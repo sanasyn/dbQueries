@@ -1,9 +1,6 @@
 'use strict';
 
-const connect_aact =  require('../db-keys').aact;
-
-const extractAactMaster = () => {
-  const db = require('knex')({client: 'pg', connection: connect_aact})
+const extractAactMaster = (db) => {
   return db.raw(
       `select
       	c.nct_id, 
@@ -24,9 +21,9 @@ const extractAactMaster = () => {
         where c.name like 'Alz%' and f.status = 'Recruiting';
     `)
     .then((res) => {
-      db.destroy()
       return res.rows
     })
+    .catch((err) => console.log(err))
 }
 
 module.exports = extractAactMaster;
