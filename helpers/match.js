@@ -1,4 +1,4 @@
-const config = require('../config/config');
+const config = require('../config/config').aact;
 const pg = require('pg');
 const knex = require('knex')(getConnectionOptions());
 const basicQuery = require('./exampleObjects').basic;
