@@ -11,7 +11,8 @@ const db_local = require('knex')({client: 'pg', connection: connection.local})
 const aactMasterETL = () => {
   return new Promise((resolve, reject) => {
     return resolve(
-      extractAactMaster(db_aact)
+      db_local.raw(`TRUNCATE public.aact_master`)
+      .then(() => extractAactMaster(db_aact))
       .then((res) => transformAactMaster(res))
       .then((res) => loadAactMaster(res, db_local))
       .then(() => console.log("Inserted all data 🎉"))
