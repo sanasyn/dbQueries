@@ -7,10 +7,10 @@ module.exports = {
     port: 5432
   },
   local: {
-    user: 'whitneywong',
+    user: 'marissapels',
     host: 'localhost',
-    database: 'testdb',
-    password: 'test',
+    database: 'trials_local',
+    password: 'Map-121790',
     port: 5432,
     searchPath: 'public'
   }

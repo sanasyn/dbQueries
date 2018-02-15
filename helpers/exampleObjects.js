@@ -15,7 +15,7 @@ let complete =
 			"cdr": 1
 		},
 		"prescriptionDuration": 8,
-		"medications": ["adricept", "exelon", "razadyneEr", "namenda"]
+		"medications": ["aricept", "exelon", "razadyneEr", "namenda"]
 	}
 let basic = 
 	{
@@ -32,7 +32,7 @@ let basic =
 			"cdr": "no"
 		},
 		"prescriptionDuration": 8,
-		"medications": ["adricept", "exelon", "razadyneEr", "namenda"]
+		"medications": ["namenda"]
 	}
 
 module.exports = {
