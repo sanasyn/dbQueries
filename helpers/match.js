@@ -1,7 +1,7 @@
 const config = require('../config/config');
 const pg = require('pg');
 const knex = require('knex')(getConnectionOptions());
-const query = require('./exampleObjects').complete;
+const query = require('./exampleObjects').basic;
 
 function getConnectionOptions() {
 	return {
@@ -42,10 +42,9 @@ function medicationsArray(queryMedications) {
 			queryArray.push(element);
 		}
 	})
-
+	console.log("QUERY ARRAY: ", queryArray);
 	return queryArray;
 }
-
 
 function runQuery() {
 	return knex.count()
@@ -66,7 +65,11 @@ function runQuery() {
 	})
 	.andWhere(function() {
 		this
-		.where(knex.raw("criteria_inc like any (array ?,?,?,?,?,?,?,?,?)", medicationsArray(query.medications)));
+		.where(knex.raw("criteria_inc like any ( :arrayTest)", 
+			{arrayTest: medicationsArray(query.medications)}
+			));
+		// .where(knex.raw("criteria_inc like any (array['%donepezil%', '%aricept%', '%cholinesterase%', '%rivastigmine%', '%exelon%', '%galantamine%', '%razadyne%', '%memantine%', '%namenda%' ])"));
+		// .where(knex.raw("criteria_inc like any (array ?,?,?,?,?,?,?,?,?)", medicationsArray(query.medications)));
 		// .where(knex.raw("criteria_inc like any (array['%donepezil%','%memantine%'])"));
 		// .where(knex.raw("criteria_inc ~ 'donepezil'"))
 	})
