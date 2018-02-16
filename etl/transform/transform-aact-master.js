@@ -12,10 +12,14 @@ const transformAactMaster = (res) => {
       criteriaInc(val.criteria),
       criteriaEx(val.criteria),
       val.status,
+      val.name,
       val.city,
       val.state,
       val.zip,
-      val.country
+      val.country,
+      val.brief_title,
+      val.official_title,
+      val.description
     ]
   })
 };
