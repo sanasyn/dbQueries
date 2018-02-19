@@ -6,16 +6,15 @@ let complete =
 		"gender": "Female",
 		"geneticTesting": "apoE4_1",
 		"mri": "yes",
-		"pet": "amyloidBeta_1",
-		"spinalTap": "both",
+		"pet": "amyloidBeta_0",
+		"spinalTap": "no",
 		"memoryEval": {
-			"taken": true,
 			"mmse": 25,
 			"moca": 25,
 			"cdr": 1
 		},
 		"prescriptionDuration": 8,
-		"medications": ["adricept", "exelon", "razadyneEr", "namenda"]
+		"medications": ["aricept", "exelon", "razadyneEr", "namenda"]
 	}
 let basic = 
 	{
@@ -26,13 +25,12 @@ let basic =
 		"pet": "no",
 		"spinalTap": "no",
 		"memoryEval": {
-			"taken": false,
 			"mmse": "no",
 			"moca": "no",
 			"cdr": "no"
 		},
 		"prescriptionDuration": 8,
-		"medications": ["adricept", "exelon", "razadyneEr", "namenda"]
+		"medications": ["namenda"]
 	}
 
 module.exports = {
