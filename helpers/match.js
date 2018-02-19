@@ -1,7 +1,14 @@
 const config = require('../config/config');
 const pg = require('pg');
 const knex = require('knex')(getConnectionOptions());
-const query = require('./exampleObjects').basic;
+
+const geneticQuery = require('./translate').geneticQuery;
+const petQuery = require('./translate').petQuery;
+const spinalQuery = require('./translate').spinalQuery;
+const mriSearch = require('./translate').mriSearch;
+const memoryEvalArray = require('./translate').memoryEvalArray;
+const medicationsArray = require('./translate').medicationsArray;
+const query = require('./exampleObjects').complete;
 
 function getConnectionOptions() {
 	return {
@@ -13,37 +20,6 @@ function getConnectionOptions() {
 			database: config.local.database
 		}
 	}
-}
-
-function medicationsArray(queryMedications) {
-	let buildArray = [];
-	let queryArray = [];
-	const aricept = ['%donepezil%', '%aricept%', '%cholinesterase%'];
-	const exelon = ['%rivastigmine%', '%exelon%', '%cholinesterase%'];
-	const razadyne = ['%galantamine%', '%razadyne%', '%cholinesterase%'];
-	const namenda = ['%memantine%', '%namenda%'];
-
-	if (queryMedications.indexOf('aricept') > -1) {
-		buildArray = buildArray.concat(aricept);
-	};
-	if (queryMedications.indexOf('exelon') > -1) {
-		buildArray = buildArray.concat(exelon);
-	};
-	if (queryMedications.indexOf('razadyneEr') > -1) {
-		buildArray = buildArray.concat(razadyne);
-	};
-	if (queryMedications.indexOf('namenda') > -1) {
-		buildArray = buildArray.concat(namenda);
-	};
-
-	//removes duplicates
-	buildArray.forEach(element => {
-		if (queryArray.indexOf(element) === -1) {
-			queryArray.push(element);
-		}
-	})
-	console.log("QUERY ARRAY: ", queryArray);
-	return queryArray;
 }
 
 function runQuery() {
@@ -65,8 +41,32 @@ function runQuery() {
 	})
 	.andWhere(function() {
 		this
-		.where(knex.raw("criteria_inc like any ( :arrayTest)", 
-			{arrayTest: medicationsArray(query.medications)}
+		.where(knex.raw("criteria_inc like all ( :spinalSearch)", 
+			{spinalSearch: spinalQuery(query.spinalTap)}
+			));
+	})
+	.andWhere(function() {
+		this
+		.where(knex.raw("criteria_inc like ( :mriSearch)", 
+			{mriSearch: mriSearch(query.mri)}
+			));
+	})
+	.andWhere(function() {
+		this
+		.where(knex.raw("criteria_inc like all ( :arraySearch)", 
+			{arraySearch: petQuery(query.pet)}
+			));
+	})
+	.andWhere(function() {
+		this
+		.where(knex.raw("criteria_inc like any ( :arraySearch)", 
+			{arraySearch: memoryEvalArray(query.memoryEval)}
+			));
+	})
+	.andWhere(function() {
+		this
+		.where(knex.raw("criteria_inc like any ( :arraySearch)", 
+			{arraySearch: medicationsArray(query.medications)}
 			));
 		// .where(knex.raw("criteria_inc like any (array['%donepezil%', '%aricept%', '%cholinesterase%', '%rivastigmine%', '%exelon%', '%galantamine%', '%razadyne%', '%memantine%', '%namenda%' ])"));
 		// .where(knex.raw("criteria_inc like any (array ?,?,?,?,?,?,?,?,?)", medicationsArray(query.medications)));
