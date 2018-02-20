@@ -7,3 +7,5 @@ const getClinicalTrialsData = () => {
     acctMaster();
     contactInfo();
 };
+
+getClinicalTrialsData();
