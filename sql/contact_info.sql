@@ -35,13 +35,13 @@ drop table contact_info;
 create table contact_info (
     nct_id varchar,
     condition varchar,
-	central_contact_type varchar(50),
+	central_contact_type varchar(100),
 	central_name varchar,
-	central_phone varchar(30),
+	central_phone varchar(100),
 	central_email varchar,
-	facility_contact_type varchar(50),
+	facility_contact_type varchar(100),
 	facility_name varchar,
-	facility_phone varchar(30),
+	facility_phone varchar(100),
 	facility_email varchar
 );
 

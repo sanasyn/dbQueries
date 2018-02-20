@@ -15,6 +15,7 @@ const contactInfo = () => {
       .then(() => extractContacts(db_aact))
       .then((res) => transformContacts(res))
       .then((res) => loadContacts(res, db_local))
+      .then(() => console.log("Inserted all contact info 🎉"))
       .then(() => {return db_aact.destroy()})
       .then(() => {return db_local.destroy()})
     )
@@ -24,5 +25,4 @@ const contactInfo = () => {
   })
 }
 
-contactInfo()
-// module.exports = contactInfo;
+module.exports = contactInfo;

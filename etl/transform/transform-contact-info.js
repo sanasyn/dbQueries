@@ -1,7 +1,5 @@
 'use strict';
 
-//TODO: Create function to nullify undefined values
-
 const transformContacts = (res) => {
   return res.map((val) => {
     return [

@@ -4,7 +4,7 @@ const extractContacts = (db) => {
   return db.raw(`
       select 
         cc.nct_id,
-        c.name,
+        c.name as condition,
         cc.contact_type as central_contact_type,
         cc.name as central_contact_name,
         cc.phone as central_contact_phone,
