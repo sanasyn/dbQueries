@@ -4,8 +4,8 @@ const acctMaster = require('./aactMaster');
 const contactInfo = require('./contactInfo');
 
 const getClinicalTrialsData = () => {
-    acctMaster();
-    contactInfo();
+    acctMaster()
+    .then(() => contactInfo());
 };
 
 getClinicalTrialsData();
