@@ -15,7 +15,7 @@ const aactMasterETL = () => {
       .then(() => extractAactMaster(db_aact))
       .then((res) => transformAactMaster(res))
       .then((res) => loadAactMaster(res, db_local))
-      .then(() => console.log("Inserted all data 🎉"))
+      .then(() => console.log("Inserted all AACT data 🎉"))
       .then(() => {return db_aact.destroy()})
       .then(() => {return db_local.destroy()})
     )
@@ -25,5 +25,4 @@ const aactMasterETL = () => {
   })
 }
 
-aactMasterETL()
-// module.exports = aactMasterETL;
+module.exports = aactMasterETL;
