@@ -5,7 +5,7 @@ const transformContacts = (res) => {
     return [
       val.id,
       val.nct_id,
-      val.name,
+      val.condition_name,
       val.central_contact_type,
       val.central_contact_name,
       val.central_contact_phone,
@@ -14,7 +14,7 @@ const transformContacts = (res) => {
       val.facility_contact_name,
       val.facility_contact_phone,
       val.facility_contact_email,
-      val.name,
+      val.facility_name,
       val.city,
       val.state,
       val.zip,
