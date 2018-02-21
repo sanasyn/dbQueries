@@ -3,8 +3,10 @@
 const extractContacts = (db) => {
   return db.raw(`
       select 
-        cc.nct_id,
-        c.name as condition,
+        distinct on(fc.id)
+        fc.id,
+        fc.nct_id,
+        c.name,
         cc.contact_type as central_contact_type,
         cc.name as central_contact_name,
         cc.phone as central_contact_phone,
@@ -12,11 +14,18 @@ const extractContacts = (db) => {
         fc.contact_type as facility_contact_type,
         fc.name as facility_contact_name,
         fc.phone as facility_contact_phone,
-        fc.email as facility_contact_email
-      from central_contacts cc
-      left join facility_contacts fc on cc.nct_id = fc.nct_id
-      left join conditions c on fc.nct_id = c.nct_id
-      where c.name like 'Alz%';
+        fc.email as facility_contact_email,
+        f.name,
+        f.city,
+        f.state,
+        f.zip,
+        f.country
+      from facility_contacts fc
+      left join facilities f on f.id = fc.facility_id
+      left join conditions c on c.nct_id = f.nct_id
+      left join central_contacts cc on cc.nct_id = f.nct_id
+      left join studies s on s.nct_id = c.nct_id
+      where c.name like 'Alz%' and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') order by fc.id;
     `)
     .then((res) => {
       return res.rows
