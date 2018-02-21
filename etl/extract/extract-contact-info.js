@@ -6,7 +6,7 @@ const extractContacts = (db) => {
         distinct on(fc.id)
         fc.id,
         fc.nct_id,
-        c.name,
+        c.name as condition_name,
         cc.contact_type as central_contact_type,
         cc.name as central_contact_name,
         cc.phone as central_contact_phone,
@@ -15,7 +15,7 @@ const extractContacts = (db) => {
         fc.name as facility_contact_name,
         fc.phone as facility_contact_phone,
         fc.email as facility_contact_email,
-        f.name,
+        f.name as facility_name,
         f.city,
         f.state,
         f.zip,
