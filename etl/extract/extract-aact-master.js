@@ -4,14 +4,14 @@ const extractAactMaster = (db) => {
   return db.raw(`
       select 
         c.nct_id,
-        c.name,
+        c.name as condition_name,
         e.gender,
         e.minimum_age,
         e.maximum_age,
         e.healthy_volunteers,
         e.criteria,
         f.status,
-        f.name,
+        f.name as facility_name,
         f.city,
         f.state,
         f.zip,
