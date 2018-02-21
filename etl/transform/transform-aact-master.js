@@ -4,7 +4,7 @@ const transformAactMaster = (res) => {
   return res.map((val) => {
     return [
       val.nct_id,
-      val.name,
+      val.condition_name,
       val.gender,
       val.minimum_age,
       val.maximum_age,
@@ -12,7 +12,7 @@ const transformAactMaster = (res) => {
       criteriaInc(val.criteria),
       criteriaEx(val.criteria),
       val.status,
-      val.name,
+      val.facility_name,
       val.city,
       val.state,
       val.zip,
