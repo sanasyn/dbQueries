@@ -4,7 +4,7 @@ const extractContacts = (db) => {
   return db.raw(`
       select 
         distinct on(fc.id)
-        fc.id,
+        f.id,
         fc.nct_id,
         c.name as condition_name,
         cc.contact_type as central_contact_type,

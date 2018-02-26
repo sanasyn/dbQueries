@@ -32,7 +32,7 @@ where c.name like 'Alz%';
 -- Facilities, Facility Contacts, Central Contacts --
 select 
 	distinct on(fc.id)
-	fc.id,
+	f.id as facility_id,
 	fc.nct_id,
 	c.name as condition_name,
 	cc.contact_type as central_contact_type,

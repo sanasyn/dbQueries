@@ -3,6 +3,7 @@
 const transformAactMaster = (res) => {
   return res.map((val) => {
     return [
+      val.facility_id,
       val.nct_id,
       val.condition_name,
       val.gender,
