@@ -25,7 +25,10 @@ const extractContacts = (db) => {
       left join conditions c on c.nct_id = f.nct_id
       left join central_contacts cc on cc.nct_id = f.nct_id
       left join studies s on s.nct_id = c.nct_id
-      where c.name like 'Alz%' and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') order by fc.id;
+      where c.name like 'Alz%'
+        and (f.country = 'United States' or f.country = 'Canada')  
+        and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') 
+      order by fc.id;
     `)
     .then((res) => {
       return res.rows
