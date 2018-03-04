@@ -18,6 +18,7 @@ const transformAactMaster = (res) => {
       val.state,
       val.zip,
       val.country,
+      val.phase,
       val.brief_title,
       val.official_title,
       val.description
