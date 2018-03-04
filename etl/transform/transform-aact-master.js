@@ -27,16 +27,15 @@ const transformAactMaster = (res) => {
 };
 
 function criteriaInc(criteria) {
-  // let inclusion = criteria.substring(0, (criteria.indexOf(criteria.match('Exclusion'))) || criteria.indexOf(criteria.match('EXCLUSION')))
-  // let inclusion = criteria.substring(criteria.indexOf(criteria.match('Inclusion')), criteria.indexOf(criteria.match('Exclusion')))
-  return criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion')) !== '' ? 
-    criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion')) :
-    criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf('EXCLUSION'))
+  if (criteria.indexOf('Exclusion') === -1 && criteria.indexOf('EXCLUSION') === -1) return criteria;
+  else if (criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion')) !== '' ) return criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion'))
+  else if (criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf('EXCLUSION')) !== '') return criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf('EXCLUSION'))
 }
 
 function criteriaEx(criteria) {
-  let exclusion = criteria.substring(criteria.indexOf(criteria.match('Exclusion')) || criteria.indexOf(criteria.match('EXCLUSION')))
-  return exclusion
+  if (criteria.indexOf('Exclusion') !== -1) return criteria.substring(criteria.indexOf('Exclusion'))
+  else if (criteria.indexOf('EXCLUSION') !== -1) return criteria.substring(criteria.indexOf('EXCLUSION'))
+  else return null;
 }
 
 module.exports = transformAactMaster;
