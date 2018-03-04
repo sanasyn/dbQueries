@@ -18,6 +18,7 @@ const extractAactMaster = (db) => {
         f.state,
         f.zip,
         f.country,
+        s.phase,
         s.brief_title,
         s.official_title,
         sum.description

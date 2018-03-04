@@ -15,6 +15,7 @@ select
     f.state,
     f.zip,
     f.country,
+    s.phase,
     s.brief_title,
     s.official_title,
     sum.description
@@ -43,6 +44,7 @@ order by f.id asc;
         f.state,
         f.zip,
         f.country,
+        s.phase,
         s.brief_title,
         s.official_title,
         sum.description
@@ -75,6 +77,7 @@ create table aact_master (
 	state varchar(100),
 	zip varchar(15),
 	country varchar(100),
+    phase varchar(50),
 	brief_title varchar,
 	official_title varchar,
 	description varchar
