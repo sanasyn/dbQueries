@@ -16,7 +16,7 @@ const transformAactMaster = (res) => {
       val.facility_name,
       val.city,
       val.state,
-      val.zip,
+      trimCanadaZip(val.zip, val.country),
       val.country,
       val.phase,
       val.brief_title,
@@ -36,6 +36,11 @@ function criteriaEx(criteria) {
   if (criteria.indexOf('Exclusion') !== -1) return criteria.substring(criteria.indexOf('Exclusion'))
   else if (criteria.indexOf('EXCLUSION') !== -1) return criteria.substring(criteria.indexOf('EXCLUSION'))
   else return null;
+}
+
+function trimCanadaZip(zip, country) {
+  if (country !== 'Canada') return zip;
+  else return zip.slice(0,3)
 }
 
 module.exports = transformAactMaster;
