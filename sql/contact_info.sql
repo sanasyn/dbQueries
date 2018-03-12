@@ -57,9 +57,9 @@ where c.name like 'Alz%' and (f.status = 'Recruiting' and s.overall_status = 'Re
 
 -- Contacts limited to United States and Canada --
 select 
-    distinct on(fc.id)
+    distinct on(f.id)
     f.id as facility_id,
-    fc.nct_id,
+    f.nct_id,
     c.name as condition_name,
     cc.contact_type as central_contact_type,
     cc.name as central_contact_name,
@@ -75,14 +75,16 @@ select
     f.zip,
     f.country
 from facility_contacts fc
-left join facilities f on f.id = fc.facility_id
-left join conditions c on c.nct_id = f.nct_id
-left join central_contacts cc on cc.nct_id = f.nct_id
-left join studies s on s.nct_id = c.nct_id
+full outer join facilities f on f.id = fc.facility_id
+left outer join conditions c on c.nct_id = f.nct_id
+left outer join central_contacts cc on cc.nct_id = f.nct_id
+left outer join studies s on s.nct_id = c.nct_id
 where c.name like 'Alz%' 
-	and (f.country = 'United States' or f.country = 'Canada') 
-	and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') 
-order by fc.id;
+  and (f.country = 'United States' or f.country = 'Canada') 
+  and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') 
+  and (cc.contact_type is null or cc.contact_type = 'primary')
+  and (fc.contact_type is null or fc.contact_type = 'primary')
+order by f.id asc;
 
 
 
