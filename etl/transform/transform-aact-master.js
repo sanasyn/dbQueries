@@ -28,14 +28,14 @@ const transformAactMaster = (res) => {
 };
 
 function criteriaInc(criteria) {
-  if (criteria.indexOf('Exclusion') === -1 && criteria.indexOf('EXCLUSION') === -1) return criteria;
-  else if (criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion')) !== '' ) return criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf('Exclusion'))
-  else if (criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf('EXCLUSION')) !== '') return criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf('EXCLUSION'))
+  if (criteria.indexOf(' Exclusion') === -1 && criteria.indexOf(' EXCLUSION') === -1) return criteria;
+  else if (criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf(' Exclusion')) !== '' ) return criteria.substring(criteria.indexOf('Inclusion', 0), criteria.indexOf(' Exclusion'))
+  else if (criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf(' EXCLUSION')) !== '') return criteria.substring(criteria.indexOf('INCLUSION', 0), criteria.indexOf(' EXCLUSION'))
 }
 
 function criteriaEx(criteria) {
-  if (criteria.indexOf('Exclusion') !== -1) return criteria.substring(criteria.indexOf('Exclusion'))
-  else if (criteria.indexOf('EXCLUSION') !== -1) return criteria.substring(criteria.indexOf('EXCLUSION'))
+  if (criteria.indexOf(' Exclusion') !== -1) return criteria.substring(criteria.indexOf(' Exclusion'))
+  else if (criteria.indexOf(' EXCLUSION') !== -1) return criteria.substring(criteria.indexOf(' EXCLUSION'))
   else return null;
 }
 
