@@ -10,6 +10,7 @@ const transformAactMaster = (res) => {
       val.minimum_age,
       val.maximum_age,
       val.healthy_volunteers,
+      val.criteria,
       criteriaInc(val.criteria),
       criteriaEx(val.criteria),
       val.status,

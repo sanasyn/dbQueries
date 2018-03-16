@@ -69,6 +69,7 @@ create table aact_master (
 	minimum_age varchar(30),
     maximum_age varchar(30),
     healthy_volunteers varchar(50),
+    criteria varchar,
 	criteria_inc varchar,
 	criteria_ex varchar,
 	status varchar(50),
