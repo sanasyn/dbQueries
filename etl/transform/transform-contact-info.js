@@ -18,7 +18,9 @@ const transformContacts = (res) => {
       val.city,
       val.state,
       val.zip,
-      val.country
+      val.country,
+      val.pi_name,
+      val.pi_role
     ]
   })
 };

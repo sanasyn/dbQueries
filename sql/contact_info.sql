@@ -73,17 +73,21 @@ select
     f.city,
     f.state,
     f.zip,
-    f.country
+    f.country,
+    fi.name as pi_name,
+    fi.role as pi_role
 from facility_contacts fc
 full outer join facilities f on f.id = fc.facility_id
 left outer join conditions c on c.nct_id = f.nct_id
 left outer join central_contacts cc on cc.nct_id = f.nct_id
 left outer join studies s on s.nct_id = c.nct_id
+left outer join facility_investigators fi on fi.nct_id = f.nct_id
 where c.name like 'Alz%' 
   and (f.country = 'United States' or f.country = 'Canada') 
   and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') 
   and (cc.contact_type is null or cc.contact_type = 'primary')
   and (fc.contact_type is null or fc.contact_type = 'primary')
+  and (fi.role is null or fi.role = 'Principal Investigator')
 order by f.id asc;
 
 
@@ -94,8 +98,8 @@ drop table contact_info;
 
 create table contact_info (
 	facility_id varchar,
-    nct_id varchar,
-    condition_name varchar,
+  nct_id varchar,
+  condition_name varchar,
 	central_contact_type varchar(100),
 	central_contact_name varchar,
 	central_contact_phone varchar(100),
@@ -108,7 +112,9 @@ create table contact_info (
 	city varchar(100),
 	state varchar(100),
 	zip varchar(15),
-	country varchar(100)
+	country varchar(100),
+	pi_name varchar(100),
+	pi_role varchar(100)
 );
 
 select * from contact_info;
