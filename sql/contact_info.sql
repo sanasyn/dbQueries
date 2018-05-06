@@ -56,6 +56,7 @@ left join studies s on s.nct_id = c.nct_id
 where c.name like 'Alz%' and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') order by fc.id;
 
 -- Contacts limited to United States and Canada --
+-- 2018-05-06 added principal investigator
 select 
     distinct on(f.id)
     f.id as facility_id,
