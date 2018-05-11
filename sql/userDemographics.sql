@@ -8,6 +8,7 @@ create table user_demographics (
   sex varchar(15),
   race varchar,
   zip integer,
+  cancer varchar(15),
   family_history boolean,
   research_interest boolean,
   memory_complaints boolean,
