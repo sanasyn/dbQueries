@@ -82,7 +82,7 @@ full outer join facilities f on f.id = fc.facility_id
 left outer join conditions c on c.nct_id = f.nct_id
 left outer join central_contacts cc on cc.nct_id = f.nct_id
 left outer join studies s on s.nct_id = c.nct_id
-left outer join facility_investigators fi on fi.nct_id = f.nct_id
+left outer join facility_investigators fi on fi.facility_id = f.id
 where c.name like 'Alz%' 
   and (f.country = 'United States' or f.country = 'Canada') 
   and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') 
