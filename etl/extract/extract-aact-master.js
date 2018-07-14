@@ -27,7 +27,7 @@ const extractAactMaster = (db) => {
       left join facilities f on e.nct_id = f.nct_id
       left join studies s on f.nct_id = s.nct_id
       left join brief_summaries sum on s.nct_id = sum.nct_id
-      where c.name like 'Alz%' 
+      where (c.name like 'Alz%' or c.downcase_name = 'mild cognitive impairment')
         and (f.country = 'United States' or f.country = 'Canada')
         and (s.overall_status = 'Recruiting' and f.status = 'Recruiting')
       order by f.id asc;
