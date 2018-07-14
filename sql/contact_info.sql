@@ -83,7 +83,7 @@ left outer join conditions c on c.nct_id = f.nct_id
 left outer join central_contacts cc on cc.nct_id = f.nct_id
 left outer join studies s on s.nct_id = c.nct_id
 left outer join facility_investigators fi on fi.facility_id = f.id
-where c.name like 'Alz%' 
+where (c.name like 'Alz%' or c.downcase_name = 'mild cognitive impairment')
   and (f.country = 'United States' or f.country = 'Canada') 
   and (f.status = 'Recruiting' and s.overall_status = 'Recruiting') 
   and (cc.contact_type is null or cc.contact_type = 'primary')
