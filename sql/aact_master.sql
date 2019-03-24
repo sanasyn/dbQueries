@@ -1,3 +1,8 @@
+-- TODO: Remove "Recruiting" status filter
+-- TODO: Add study start and end dates
+-- TODO: Add flag to know if record comes from AACT or from our app (don't want to override our app's records)
+
+
 -- joins with selected cols --
 select 
 	distinct on(f.id)
@@ -81,7 +86,9 @@ create table aact_master (
     phase varchar(50),
 	brief_title varchar,
 	official_title varchar,
-	description varchar
+	description varchar,
+    latitude varchar(15),
+    longitude varchar(15)
 );
 
 select * from aact_master;

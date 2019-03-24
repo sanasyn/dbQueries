@@ -1,10 +1,8 @@
 
-var express = require("express");
-var bodyParser = require("body-parser")
-var Client = require("pg")
-
-var app = express();
-var PORT = process.env.PORT || 8080;
+const express = require("express");
+const bodyParser = require("body-parser");
+let app = express();
+let PORT = process.env.PORT || 8080;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
